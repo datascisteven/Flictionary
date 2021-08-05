@@ -112,3 +112,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+/animals/
+/extra/
+/full/
+/quickdraw-ndjson-to-npz-master
+/QuickDraw-master/
+.DS_Store
