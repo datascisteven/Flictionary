@@ -114,8 +114,8 @@ dmypy.json
 .pyre/
 
 /animals/
-/extra/
 /full/
-/quickdraw-ndjson-to-npz-master
-/QuickDraw-master/
 .DS_Store
+
+/pictures/
+/node_modules/
