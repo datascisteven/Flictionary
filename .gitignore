@@ -119,3 +119,9 @@ dmypy.json
 
 /pictures/
 /node_modules/
+/npz/
+*.pickle
+*.pth
+/app/*.png
+
+
