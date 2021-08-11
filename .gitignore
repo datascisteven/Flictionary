@@ -122,6 +122,6 @@ dmypy.json
 /npz/
 *.pickle
 *.pth
-/app/*.png
+/Flask-App/*.png
 
 

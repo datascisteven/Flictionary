@@ -97,69 +97,48 @@ def load_data():
         # Load data from pickle files
         print("Loading data from pickle files \n")
 
-        file = open("xtrain_doodle.pickle",'rb')
+        file = open("xtrain.pickle",'rb')
         X_train = pickle.load(file)
         file.close()
 
-        file = open("xtest_doodle.pickle",'rb')
+        file = open("xtest.pickle",'rb')
         X_test = pickle.load(file)
         file.close()
 
-        file = open("ytrain_doodle.pickle",'rb')
+        file = open("ytrain.pickle",'rb')
         y_train = pickle.load(file)
         file.close()
 
-        file = open("ytest_doodle.pickle",'rb')
+        file = open("ytest.pickle",'rb')
         y_test = pickle.load(file)
         file.close()
 
     return X_train, y_train, X_test, y_test
 
 def save_data(X_train, y_train, X_test, y_test, force = False):
-    """
-    The function saves datasets to disk as pickle files.
 
-    INPUT:
-        X_train - train dataset
-        y_train - train dataset labels
-        X_test - test dataset
-        y_test - test dataset labels
-        force - forced saving of the files
-
-    OUTPUT: None
-    """
     print("Saving data \n")
 
     # Check for already saved files
-    if not(path.exists('xtrain_doodle.pickle')) or force:
+    if not(path.exists('xtrain.pickle')) or force:
         # Save X_train dataset as a pickle file
-        with open('xtrain_doodle.pickle', 'wb') as f:
+        with open('xtrain.pickle', 'wb') as f:
             pickle.dump(X_train, f)
 
         # Save X_test dataset as a pickle file
-        with open('xtest_doodle.pickle', 'wb') as f:
+        with open('xtest.pickle', 'wb') as f:
             pickle.dump(X_test, f)
 
         # Save y_train dataset as a pickle file
-        with open('ytrain_doodle.pickle', 'wb') as f:
+        with open('ytrain.pickle', 'wb') as f:
             pickle.dump(y_train, f)
 
         # Save y_test dataset as a pickle file
-        with open('ytest_doodle.pickle', 'wb') as f:
+        with open('ytest.pickle', 'wb') as f:
             pickle.dump(y_test, f)
 
 def build_model(input_size, output_size, hidden_sizes, architecture = 'nn', dropout = 0.0):
-    '''
-    Function creates deep learning model based on parameters passed.
 
-    INPUT:
-        1. architecture - model architecture
-            'nn' - for feed-forward neural network with 1 hidden layer
-        2. dropout - dropout (probability of keeping a node)
-
-    OUTPUT:
-        model - deep learning model
-    '''
     if (architecture == 'nn'):
         # Build a feed-forward network
         model = nn.Sequential(OrderedDict([
@@ -182,16 +161,7 @@ def build_model(input_size, output_size, hidden_sizes, architecture = 'nn', drop
     return model
 
 def shuffle(X_train, y_train):
-    """
-    Function which shuffles training dataset.
-    INPUT:
-        X_train - (tensor) training set
-        y_train - (tensor) labels for training set
 
-    OUTPUT:
-        X_train_shuffled - (tensor) shuffled training set
-        y_train_shuffled - (tensor) shuffled labels for training set
-    """
     X_train_shuffled = X_train.numpy()
     y_train_shuffled = y_train.numpy().reshape((X_train.shape[0], 1))
 
@@ -205,19 +175,6 @@ def shuffle(X_train, y_train):
     return X_train_shuffled, y_train_shuffled
 
 def fit_conv(model, X_train, y_train, epochs = 100, n_chunks = 1000, learning_rate = 0.003, weight_decay = 0, optimizer = 'SGD'):
-    """
-    Function which fits the model.
-
-    INPUT:
-        model - pytorch model to fit
-        X_train - (tensor) train dataset
-        y_train - (tensor) train dataset labels
-        epochs - number of epochs
-        n_chunks - number of chunks to cplit the dataset
-        learning_rate - learning rate value
-
-    OUTPUT: None
-    """
 
     print("Fitting model with epochs = {epochs}, learning rate = {lr}\n"\
     .format(epochs = epochs, lr = learning_rate))
@@ -505,163 +462,163 @@ def evaluate_model(model, train, y_train, test, y_test, architecture = 'nn'):
 
     return accuracy_train, accuracy_test
 
-def plot_learning_curve(input_size, output_size, hidden_sizes, train, labels, y_train, test, y_test, learning_rate = 0.003, weight_decay = 0.0, dropout = 0.0, n_chunks = 1000, optimizer = 'SGD'):
-    """
-    Function to plot learning curve depending on the number of epochs.
+# def plot_learning_curve(input_size, output_size, hidden_sizes, train, labels, y_train, test, y_test, learning_rate = 0.003, weight_decay = 0.0, dropout = 0.0, n_chunks = 1000, optimizer = 'SGD'):
+#     """
+#     Function to plot learning curve depending on the number of epochs.
 
-    INPUT:
-        input_size, output_size, hidden_sizes - model parameters
-        train - (tensor) train dataset
-        labels - (tensor) labels for train dataset
-        y_train - (numpy) labels for train dataset
-        test - (tensor) test dataset
-        y_test - (numpy) labels for test dataset
-        learning_rate - learning rate hyperparameter
-        weight_decay - weight decay (regularization)
-        dropout - dropout for hidden layer
-        n_chunks - the number of minibatches to train the model
-        optimizer - optimizer to be used for training (SGD or Adam)
+#     INPUT:
+#         input_size, output_size, hidden_sizes - model parameters
+#         train - (tensor) train dataset
+#         labels - (tensor) labels for train dataset
+#         y_train - (numpy) labels for train dataset
+#         test - (tensor) test dataset
+#         y_test - (numpy) labels for test dataset
+#         learning_rate - learning rate hyperparameter
+#         weight_decay - weight decay (regularization)
+#         dropout - dropout for hidden layer
+#         n_chunks - the number of minibatches to train the model
+#         optimizer - optimizer to be used for training (SGD or Adam)
 
-    OUTPUT: None
-    """
-    train_acc = []
-    test_acc = []
+#     OUTPUT: None
+#     """
+#     train_acc = []
+#     test_acc = []
 
-    for epochs in np.arange(10, 210, 10):
-        # create model
-        model = build_model(input_size, output_size, hidden_sizes, dropout = dropout)
+#     for epochs in np.arange(10, 210, 10):
+#         # create model
+#         model = build_model(input_size, output_size, hidden_sizes, dropout = dropout)
 
-        # fit model
-        fit_model(model, train, labels, epochs = epochs, n_chunks = n_chunks, learning_rate = learning_rate, weight_decay = weight_decay, optimizer = optimizer)
-        # get accuracy
-        accuracy_train, accuracy_test = evaluate_model(model, train, y_train, test, y_test)
+#         # fit model
+#         fit_model(model, train, labels, epochs = epochs, n_chunks = n_chunks, learning_rate = learning_rate, weight_decay = weight_decay, optimizer = optimizer)
+#         # get accuracy
+#         accuracy_train, accuracy_test = evaluate_model(model, train, y_train, test, y_test)
 
-        train_acc.append(accuracy_train)
-        test_acc.append(accuracy_test)
+#         train_acc.append(accuracy_train)
+#         test_acc.append(accuracy_test)
 
-    # Plot curve
-    x = np.arange(10, 210, 10)
-    plt.plot(x, train_acc)
-    plt.plot(x, test_acc)
-    plt.legend(['train', 'test'], loc='upper left')
-    plt.title('Accuracy, learning_rate = ' + str(learning_rate), fontsize=20)
-    plt.xlabel('Number of epochs', fontsize=14)
-    plt.ylabel('Accuracy', fontsize=14)
+#     # Plot curve
+#     x = np.arange(10, 210, 10)
+#     plt.plot(x, train_acc)
+#     plt.plot(x, test_acc)
+#     plt.legend(['train', 'test'], loc='upper left')
+#     plt.title('Accuracy, learning_rate = ' + str(learning_rate), fontsize=20)
+#     plt.xlabel('Number of epochs', fontsize=14)
+#     plt.ylabel('Accuracy', fontsize=14)
 
-    ts = time.time()
-    plt.savefig('learning_curve' + str(ts) + '.png')
+#     ts = time.time()
+#     plt.savefig('learning_curve' + str(ts) + '.png')
 
-    df = pd.DataFrame.from_dict({'train' : train_acc, 'test' :test_acc})
-    df.to_csv('learning_curve_' + str(ts) + '.csv')
+#     df = pd.DataFrame.from_dict({'train' : train_acc, 'test' :test_acc})
+#     df.to_csv('learning_curve_' + str(ts) + '.csv')
 
-def plot_learning_curve_conv(input_size, output_size, hidden_sizes, train, labels, y_train, test, y_test, learning_rate = 0.003, weight_decay = 0.0, dropout = 0.0, n_chunks = 1000, optimizer = 'SGD'):
-    """
-    Function to plot learning curve depending on the number of epochs.
+# def plot_learning_curve_conv(input_size, output_size, hidden_sizes, train, labels, y_train, test, y_test, learning_rate = 0.003, weight_decay = 0.0, dropout = 0.0, n_chunks = 1000, optimizer = 'SGD'):
+#     """
+#     Function to plot learning curve depending on the number of epochs.
 
-    INPUT:
-        input_size, output_size, hidden_sizes - model parameters
-        train - (tensor) train dataset
-        labels - (tensor) labels for train dataset
-        y_train - (numpy) labels for train dataset
-        test - (tensor) test dataset
-        y_test - (numpy) labels for test dataset
-        learning_rate - learning rate hyperparameter
-        weight_decay - weight decay (regularization)
-        dropout - dropout for hidden layer
-        n_chunks - the number of minibatches to train the model
-        optimizer - optimizer to be used for training (SGD or Adam)
+#     INPUT:
+#         input_size, output_size, hidden_sizes - model parameters
+#         train - (tensor) train dataset
+#         labels - (tensor) labels for train dataset
+#         y_train - (numpy) labels for train dataset
+#         test - (tensor) test dataset
+#         y_test - (numpy) labels for test dataset
+#         learning_rate - learning rate hyperparameter
+#         weight_decay - weight decay (regularization)
+#         dropout - dropout for hidden layer
+#         n_chunks - the number of minibatches to train the model
+#         optimizer - optimizer to be used for training (SGD or Adam)
 
-    OUTPUT: None
-    """
-    train_acc = []
-    test_acc = []
+#     OUTPUT: None
+#     """
+#     train_acc = []
+#     test_acc = []
 
-    for epochs in np.arange(2, 12, 2):
-        # create model
-        model = build_model(input_size, output_size, hidden_sizes, architecture = 'conv', dropout = dropout)
+#     for epochs in np.arange(2, 12, 2):
+#         # create model
+#         model = build_model(input_size, output_size, hidden_sizes, architecture = 'conv', dropout = dropout)
 
-        # fit model
-        fit_conv(model, train, labels, epochs = epochs, n_chunks = n_chunks, learning_rate = learning_rate, weight_decay = weight_decay, optimizer = optimizer)
-        # get accuracy
-        accuracy_train, accuracy_test = evaluate_model(model, train, y_train, test, y_test, architecture = 'conv')
+#         # fit model
+#         fit_conv(model, train, labels, epochs = epochs, n_chunks = n_chunks, learning_rate = learning_rate, weight_decay = weight_decay, optimizer = optimizer)
+#         # get accuracy
+#         accuracy_train, accuracy_test = evaluate_model(model, train, y_train, test, y_test, architecture = 'conv')
 
-        train_acc.append(accuracy_train)
-        test_acc.append(accuracy_test)
+#         train_acc.append(accuracy_train)
+#         test_acc.append(accuracy_test)
 
-    # Plot curve
-    x = np.arange(2, 12, 2)
-    plt.plot(x, train_acc)
-    plt.plot(x, test_acc)
-    plt.legend(['train', 'test'], loc='upper left')
-    plt.title('Accuracy, learning_rate = ' + str(learning_rate), fontsize=20)
-    plt.xlabel('Number of epochs', fontsize=14)
-    plt.ylabel('Accuracy', fontsize=14)
+#     # Plot curve
+#     x = np.arange(2, 12, 2)
+#     plt.plot(x, train_acc)
+#     plt.plot(x, test_acc)
+#     plt.legend(['train', 'test'], loc='upper left')
+#     plt.title('Accuracy, learning_rate = ' + str(learning_rate), fontsize=20)
+#     plt.xlabel('Number of epochs', fontsize=14)
+#     plt.ylabel('Accuracy', fontsize=14)
 
-    ts = time.time()
-    plt.savefig('learning_curve' + str(ts) + '.png')
+#     ts = time.time()
+#     plt.savefig('learning_curve' + str(ts) + '.png')
 
-    df = pd.DataFrame.from_dict({'train' : train_acc, 'test' :test_acc})
-    df.to_csv('learning_curve_' + str(ts) + '.csv')
+#     df = pd.DataFrame.from_dict({'train' : train_acc, 'test' :test_acc})
+#     df.to_csv('learning_curve_' + str(ts) + '.csv')
 
-def compare_hyperparameters(input_size, output_size, hidden_sizes, train, labels, y_train, test, y_test, learning_rate, architecture = 'nn', n_chunks = 1000, optimizer = 'SGD'):
-    """
-    Function which evaluates the accyracy of the model on set of hyperparameters dropout and weight_decay.
-    """
-    # define hyperparameters grid
-    weight_decays = [0.0]
-    dropouts = [0.0, 0.3, 0.5]
+# def compare_hyperparameters(input_size, output_size, hidden_sizes, train, labels, y_train, test, y_test, learning_rate, architecture = 'nn', n_chunks = 1000, optimizer = 'SGD'):
+#     """
+#     Function which evaluates the accyracy of the model on set of hyperparameters dropout and weight_decay.
+#     """
+#     # define hyperparameters grid
+#     weight_decays = [0.0]
+#     dropouts = [0.0, 0.3, 0.5]
 
-    epochs = np.arange(10, 110, 10)
+#     epochs = np.arange(10, 110, 10)
 
-    results = {}
-    params = []
+#     results = {}
+#     params = []
 
-    # train and evaluate models with different hyperparameters
-    for weight_decay in weight_decays:
-        for dropout in dropouts:
+#     # train and evaluate models with different hyperparameters
+#     for weight_decay in weight_decays:
+#         for dropout in dropouts:
 
-            test_acc = []
-            train_acc = []
+#             test_acc = []
+#             train_acc = []
 
-            for e in epochs:
-                model = build_model(input_size, output_size, hidden_sizes, architecture = architecture, dropout = dropout)
-                fit_model(model, train, labels, epochs = e, n_chunks = n_chunks, learning_rate = learning_rate, weight_decay = weight_decay, optimizer = optimizer)
+#             for e in epochs:
+#                 model = build_model(input_size, output_size, hidden_sizes, architecture = architecture, dropout = dropout)
+#                 fit_model(model, train, labels, epochs = e, n_chunks = n_chunks, learning_rate = learning_rate, weight_decay = weight_decay, optimizer = optimizer)
 
-                accuracy_train, accuracy_test = evaluate_model(model, train, y_train, test, y_test)
+#                 accuracy_train, accuracy_test = evaluate_model(model, train, y_train, test, y_test)
 
-                train_acc.append(accuracy_train)
-                test_acc.append(accuracy_test)
+#                 train_acc.append(accuracy_train)
+#                 test_acc.append(accuracy_test)
 
-            results['test weight_decay: ' + str(weight_decay) + ', dropout: ' + str(dropout)] = test_acc
-            results['train weight_decay: ' + str(weight_decay) + ', dropout: ' + str(dropout)] = train_acc
-            params.append('weight_decay: ' + str(weight_decay) + ', dropout: ' + str(dropout))
+#             results['test weight_decay: ' + str(weight_decay) + ', dropout: ' + str(dropout)] = test_acc
+#             results['train weight_decay: ' + str(weight_decay) + ', dropout: ' + str(dropout)] = train_acc
+#             params.append('weight_decay: ' + str(weight_decay) + ', dropout: ' + str(dropout))
 
-            # save intermediate results
-            df = pd.DataFrame.from_dict(results)
-            df.to_csv('comparison.csv')
+#             # save intermediate results
+#             df = pd.DataFrame.from_dict(results)
+#             df.to_csv('comparison.csv')
 
-    print(results)
+#     print(results)
 
-    ts = time.time()
+#     ts = time.time()
 
-    # save results as csv
-    df = pd.DataFrame.from_dict(results)
-    df.to_csv('comparison_' + str(ts) + '.csv')
+#     # save results as csv
+#     df = pd.DataFrame.from_dict(results)
+#     df.to_csv('comparison_' + str(ts) + '.csv')
 
-def create_heatmap_for_each_class(X_train, y_train):
-    """
-    Function creates heatmaps for images for each class in the training dataset.
-    INPUT:
-        X_train - (numpy array) training dataset
-        y_train - (numpy array) labels for the training dataset
+# def create_heatmap_for_each_class(X_train, y_train):
+#     """
+#     Function creates heatmaps for images for each class in the training dataset.
+#     INPUT:
+#         X_train - (numpy array) training dataset
+#         y_train - (numpy array) labels for the training dataset
 
-    OUTPUT: None
-    """
-    label_dict = {0:'bee', 1:'cat', 2:'cow', 3:'dog', 4:'duck',
-                  5:'horse', 6:'pig', 7:'rabbit', 8:'snake', 9:'whale'}
+#     OUTPUT: None
+#     """
+#     label_dict = {0:'bee', 1:'cat', 2:'cow', 3:'dog', 4:'duck',
+#                   5:'horse', 6:'pig', 7:'rabbit', 8:'snake', 9:'whale'}
 
-    for i in range(0, 10):
-        view_label_heatmap(X_train, y_train, i, label_dict[i])
+#     for i in range(0, 10):
+#         view_label_heatmap(X_train, y_train, i, label_dict[i])
 
 def main():
     # Parse command line arguments

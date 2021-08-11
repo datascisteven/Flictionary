@@ -1,13 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on May  10 2019
-
-@author: Aleksandra Deis
-
-Script which runs flask web application for Qick Draw
-
-"""
+0000
 #import libraries
 import numpy as np
 from PIL import Image
@@ -47,8 +38,8 @@ import torch.nn.functional as F
 from torchvision import datasets, transforms
 
 # Dictionary with label codes
-label_dict = {0:'cannon',1:'eye', 2:'face', 3:'nail', 4:'pear',
-              5:'piano',6:'radio', 7:'spider', 8:'star', 9:'sword'}
+label_dict = {0:'bee', 1:'cat', 2:'cow', 3:'dog', 4:'duck',
+              5:'horse', 6:'pig', 7:'rabbit', 8:'snake', 9:'whale'}
 
 def load_model(filepath = '../checkpoint.pth'):
     """
@@ -130,7 +121,7 @@ def view_classify(img, preds):
     ax2.barh(np.arange(10), preds)
     ax2.set_aspect(0.1)
     ax2.set_yticks(np.arange(10))
-    ax2.set_yticklabels(['cannon','eye', 'face', 'nail', 'pear','piano','radio','spider','star','sword'], size='small');
+    ax2.set_yticklabels(['bee', 'cat', 'cow', 'dog', 'duck', 'horse', 'pig', 'rabbit', 'snake', 'whale'], size='small');
     ax2.set_title('Class Probability')
     ax2.set_xlim(0, 1.1)
 
