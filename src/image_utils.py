@@ -16,21 +16,6 @@ from PIL import Image
 from PIL import ImageOps
 
 def load_data():
-    """
-    Function loads quick draw dataset. If no data is loaded yet, the datasets
-    are loaded from the web. If there are already loaded datasets, then data
-    is loaded from the disk (pickle files).
-
-    INPUTS: None
-
-    OUTPUT:
-        X_train - train dataset
-        y_train - train dataset labels
-        X_test - test dataset
-        y_test - test dataset labels
-    """
-    print("Loading data \n")
-
     # Check for already loaded datasets
     if not(path.exists('xtrain_doodle.pickle')):
         # Load from web

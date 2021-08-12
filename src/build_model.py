@@ -52,7 +52,7 @@ def load_data():
     print("Loading data \n")
 
     # Check for already loaded datasets
-    if not(path.exists('xtrain_doodle.pickle')):
+    if not(path.exists('../data/xtrain.pickle')):
         # Load from web
         print("Loading data from the web \n")
 
@@ -97,19 +97,19 @@ def load_data():
         # Load data from pickle files
         print("Loading data from pickle files \n")
 
-        file = open("xtrain.pickle",'rb')
+        file = open("../data/xtrain.pickle",'rb')
         X_train = pickle.load(file)
         file.close()
 
-        file = open("xtest.pickle",'rb')
+        file = open("../data/xtest.pickle",'rb')
         X_test = pickle.load(file)
         file.close()
 
-        file = open("ytrain.pickle",'rb')
+        file = open("../data/ytrain.pickle",'rb')
         y_train = pickle.load(file)
         file.close()
 
-        file = open("ytest.pickle",'rb')
+        file = open("../data/ytest.pickle",'rb')
         y_test = pickle.load(file)
         file.close()
 
@@ -117,24 +117,22 @@ def load_data():
 
 def save_data(X_train, y_train, X_test, y_test, force = False):
 
-    print("Saving data \n")
-
     # Check for already saved files
-    if not(path.exists('xtrain.pickle')) or force:
+    if not(path.exists('data/xtrain.pickle')) or force:
         # Save X_train dataset as a pickle file
-        with open('xtrain.pickle', 'wb') as f:
+        with open('data/xtrain.pickle', 'wb') as f:
             pickle.dump(X_train, f)
 
         # Save X_test dataset as a pickle file
-        with open('xtest.pickle', 'wb') as f:
+        with open('data/xtest.pickle', 'wb') as f:
             pickle.dump(X_test, f)
 
         # Save y_train dataset as a pickle file
-        with open('ytrain.pickle', 'wb') as f:
+        with open('data/ytrain.pickle', 'wb') as f:
             pickle.dump(y_train, f)
 
         # Save y_test dataset as a pickle file
-        with open('ytest.pickle', 'wb') as f:
+        with open('data/ytest.pickle', 'wb') as f:
             pickle.dump(y_test, f)
 
 def build_model(input_size, output_size, hidden_sizes, architecture = 'nn', dropout = 0.0):
