@@ -13,7 +13,10 @@ import json
 
 # import matplotlib for plotting
 from matplotlib.pyplot import imshow
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+
 
 # import Plotly
 import plotly
@@ -26,7 +29,7 @@ from flask import render_template, request
 
 # import image processing
 import sys
-sys.path.insert(0, '../')
+sys.path.append("../src/")
 import image_utils
 from image_utils import crop_image, normalize_image, convert_to_rgb, convert_to_np
 
@@ -41,7 +44,7 @@ from torchvision import datasets, transforms
 label_dict = {0:'bee', 1:'cat', 2:'cow', 3:'dog', 4:'duck',
               5:'horse', 6:'pig', 7:'rabbit', 8:'snake', 9:'whale'}
 
-def load_model(filepath = '../checkpoint.pth'):
+def load_model(filepath = '../data/checkpoint.pth'):
     """
     Function loads the model from checkpoint.
 

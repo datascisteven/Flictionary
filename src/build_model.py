@@ -220,19 +220,6 @@ def fit_conv(model, X_train, y_train, epochs = 100, n_chunks = 1000, learning_ra
                 running_loss = 0
 
 def fit_model(model, X_train, y_train, epochs = 100, n_chunks = 1000, learning_rate = 0.003, weight_decay = 0, optimizer = 'SGD'):
-    """
-    Function which fits the model.
-
-    INPUT:
-        model - pytorch model to fit
-        X_train - (tensor) train dataset
-        y_train - (tensor) train dataset labels
-        epochs - number of epochs
-        n_chunks - number of chunks to cplit the dataset
-        learning_rate - learning rate value
-
-    OUTPUT: None
-    """
 
     print("Fitting model with epochs = {epochs}, learning rate = {lr}\n"\
     .format(epochs = epochs, lr = learning_rate))
@@ -332,17 +319,6 @@ def save_model(model, architecture, input_size, output_size, hidden_sizes, dropo
         torch.save(checkpoint, filepath)
 
 def load_model(architecture = 'nn', filepath = 'checkpoint.pth'):
-    """
-    Function loads the model from checkpoint.
-
-    INPUT:
-        architecture - model architecture ('nn' - for fully connected neural network, 'conv' - for convolutional neural
-        network)
-        filepath - path for the saved model
-
-    OUTPUT:
-        model - loaded pytorch model
-    """
 
     print("Loading model from {} \n".format(filepath))
 
@@ -390,17 +366,6 @@ def test_model(model, img, architecture = 'nn'):
     view_classify(img.resize_(1, 28, 28), ps)
 
 def get_preds(model, input, architecture = 'nn'):
-    """
-    Function to get predicted probabilities from the model for each class.
-
-    INPUT:
-        model - pytorch model
-        input - (tensor) input vector
-
-    OUTPUT:
-        ps - (tensor) vector of predictions
-    """
-
     # Turn off gradients to speed up this part
     with torch.no_grad():
         if architecture == 'nn':
@@ -414,16 +379,6 @@ def get_preds(model, input, architecture = 'nn'):
     return ps
 
 def get_labels(pred):
-    """
-        Function to get the vector of predicted labels for the images in
-        the dataset.
-
-        INPUT:
-            pred - (tensor) vector of predictions (probabilities for each class)
-        OUTPUT:
-            pred_labels - (numpy) array of predicted classes for each vector
-    """
-
     pred_np = pred.numpy()
     pred_values = np.amax(pred_np, axis=1, keepdims=True)
     pred_labels = np.array([np.where(pred_np[i, :] == pred_values[i, :])[0] for i in range(pred_np.shape[0])])
@@ -432,20 +387,6 @@ def get_labels(pred):
     return pred_labels
 
 def evaluate_model(model, train, y_train, test, y_test, architecture = 'nn'):
-    """
-    Function to print out train and test accuracy of the model.
-
-    INPUT:
-        model - pytorch model
-        train - (tensor) train dataset
-        y_train - (numpy) labels for train dataset
-        test - (tensor) test dataset
-        y_test - (numpy) labels for test dataset
-
-    OUTPUT:
-        accuracy_train - accuracy on train dataset
-        accuracy_test - accuracy on test dataset
-    """
     train_pred = get_preds(model, train, architecture)
     train_pred_labels = get_labels(train_pred)
 
@@ -460,54 +401,54 @@ def evaluate_model(model, train, y_train, test, y_test, architecture = 'nn'):
 
     return accuracy_train, accuracy_test
 
-# def plot_learning_curve(input_size, output_size, hidden_sizes, train, labels, y_train, test, y_test, learning_rate = 0.003, weight_decay = 0.0, dropout = 0.0, n_chunks = 1000, optimizer = 'SGD'):
-#     """
-#     Function to plot learning curve depending on the number of epochs.
+def plot_learning_curve(input_size, output_size, hidden_sizes, train, labels, y_train, test, y_test, learning_rate = 0.003, weight_decay = 0.0, dropout = 0.0, n_chunks = 1000, optimizer = 'SGD'):
+    """
+    Function to plot learning curve depending on the number of epochs.
 
-#     INPUT:
-#         input_size, output_size, hidden_sizes - model parameters
-#         train - (tensor) train dataset
-#         labels - (tensor) labels for train dataset
-#         y_train - (numpy) labels for train dataset
-#         test - (tensor) test dataset
-#         y_test - (numpy) labels for test dataset
-#         learning_rate - learning rate hyperparameter
-#         weight_decay - weight decay (regularization)
-#         dropout - dropout for hidden layer
-#         n_chunks - the number of minibatches to train the model
-#         optimizer - optimizer to be used for training (SGD or Adam)
+    INPUT:
+        input_size, output_size, hidden_sizes - model parameters
+        train - (tensor) train dataset
+        labels - (tensor) labels for train dataset
+        y_train - (numpy) labels for train dataset
+        test - (tensor) test dataset
+        y_test - (numpy) labels for test dataset
+        learning_rate - learning rate hyperparameter
+        weight_decay - weight decay (regularization)
+        dropout - dropout for hidden layer
+        n_chunks - the number of minibatches to train the model
+        optimizer - optimizer to be used for training (SGD or Adam)
 
-#     OUTPUT: None
-#     """
-#     train_acc = []
-#     test_acc = []
+    OUTPUT: None
+    """
+    train_acc = []
+    test_acc = []
 
-#     for epochs in np.arange(10, 210, 10):
-#         # create model
-#         model = build_model(input_size, output_size, hidden_sizes, dropout = dropout)
+    for epochs in np.arange(10, 210, 10):
+        # create model
+        model = build_model(input_size, output_size, hidden_sizes, dropout = dropout)
 
-#         # fit model
-#         fit_model(model, train, labels, epochs = epochs, n_chunks = n_chunks, learning_rate = learning_rate, weight_decay = weight_decay, optimizer = optimizer)
-#         # get accuracy
-#         accuracy_train, accuracy_test = evaluate_model(model, train, y_train, test, y_test)
+        # fit model
+        fit_model(model, train, labels, epochs = epochs, n_chunks = n_chunks, learning_rate = learning_rate, weight_decay = weight_decay, optimizer = optimizer)
+        # get accuracy
+        accuracy_train, accuracy_test = evaluate_model(model, train, y_train, test, y_test)
 
-#         train_acc.append(accuracy_train)
-#         test_acc.append(accuracy_test)
+        train_acc.append(accuracy_train)
+        test_acc.append(accuracy_test)
 
-#     # Plot curve
-#     x = np.arange(10, 210, 10)
-#     plt.plot(x, train_acc)
-#     plt.plot(x, test_acc)
-#     plt.legend(['train', 'test'], loc='upper left')
-#     plt.title('Accuracy, learning_rate = ' + str(learning_rate), fontsize=20)
-#     plt.xlabel('Number of epochs', fontsize=14)
-#     plt.ylabel('Accuracy', fontsize=14)
+    # Plot curve
+    x = np.arange(10, 210, 10)
+    plt.plot(x, train_acc)
+    plt.plot(x, test_acc)
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.title('Accuracy, learning_rate = ' + str(learning_rate), fontsize=20)
+    plt.xlabel('Number of epochs', fontsize=14)
+    plt.ylabel('Accuracy', fontsize=14)
 
-#     ts = time.time()
-#     plt.savefig('learning_curve' + str(ts) + '.png')
+    ts = time.time()
+    plt.savefig('learning_curve' + str(ts) + '.png')
 
-#     df = pd.DataFrame.from_dict({'train' : train_acc, 'test' :test_acc})
-#     df.to_csv('learning_curve_' + str(ts) + '.csv')
+    df = pd.DataFrame.from_dict({'train' : train_acc, 'test' :test_acc})
+    df.to_csv('learning_curve_' + str(ts) + '.csv')
 
 # def plot_learning_curve_conv(input_size, output_size, hidden_sizes, train, labels, y_train, test, y_test, learning_rate = 0.003, weight_decay = 0.0, dropout = 0.0, n_chunks = 1000, optimizer = 'SGD'):
 #     """
