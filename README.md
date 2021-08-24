@@ -1,17 +1,12 @@
-<center><strong><font size=18>Flictionary</font></strong></center>
+<center><h1><font size=18>Flictionary</font></h1></center>
  
 # Introduction
 
-The repository represents the backend API for the Pictionary-inspired gaming app, Flictionary, hosted at (website). This is a collaboration between 4 Flatiron alums: 2 Software Engineering and 2 Data Science.
- 
-The frontend application repository is located at (link to repo)
+The repository represents the continued effort of a hodgepodge of Flatiron alumnni to build a Pictionary-inspired gaming app, Flictionary, including the Software Engineering, Data Science, and UX/UI programs.
+
+This was the one in a series of Flatiron School Hackathons spearheaded by Cody Miller, and I am grateful to be a participant of.
 
 
-
-[Flipping Photo]("images/flipping_finger.jpg")
-
-
-Photo by <a href="https://unsplash.com/@nataconect?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Natã Figueiredo</a> on <a href="https://unsplash.com/s/photos/hate?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
 
 # Business Understanding
@@ -33,6 +28,8 @@ Photo by <a href="https://unsplash.com/@nataconect?utm_source=unsplash&utm_mediu
 
 
 # Modeling:
+
+
 
 
 
