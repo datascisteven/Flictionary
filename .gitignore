@@ -113,8 +113,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-/animals/
-/extra/
+/input/
+/pictures/
+/results/
+/data/
 /full/
 /quickdraw-ndjson-to-npz-master
 /QuickDraw-master/
