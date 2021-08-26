@@ -118,6 +118,7 @@ dmypy.json
 /results/
 /data/
 /full/
+/animals/
 /quickdraw-ndjson-to-npz-master
 /QuickDraw-master/
 .DS_Store
