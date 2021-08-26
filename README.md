@@ -19,31 +19,44 @@ Here were some of the guidelines we were given:
 
 Please stay tuned for the blog on Medium describing our brainstorming process, group dynamics, recap of our group chats and meetings, what our successes and challenges were, what I learned from the experience, as well as our future steps.
 
-While there were many passionate people working hard over the past two weeks on this project,
+While there were many passionate people working hard over the past two weeks on this project and were enthusiastic to see it go to completion, I recognize that job searching and life demands can take priority, and the project may go to the backburner.
 
 
 # Data Sources:
 
 The Quick Draw Dataset is a collection of 50 million drawings across 345 categories, contributed by players of the game Quick, Draw!. The drawings were captured as timestamped vectors, tagged with metadata including what the player was asked to draw and in which country the player was located. You can browse the recognized drawings on [quickdraw.withgoogle.com/data](https://quickdraw.withgoogle.com/data).
 
-Kaggle hosted a Quick, Draw! Doodle Recognition Challenge 3 years ago, and we used the dataset for some of the models:  [https://www.kaggle.com/c/quickdraw-doodle-recognition/data](https://www.kaggle.com/c/quickdraw-doodle-recognition/data)
+Kaggle hosted a Quick, Draw! Doodle Recognition Challenge 3 years ago, and they released another format for the images and we used that dataset for some of the models:  [https://www.kaggle.com/c/quickdraw-doodle-recognition/data](https://www.kaggle.com/c/quickdraw-doodle-recognition/data)
  
 
+Github link for the dataset:  [https://github.com/googlecreativelab/quickdraw-dataset](https://github.com/googlecreativelab/quickdraw-dataset)
 
-Here is the Github link for the dataset:  [https://github.com/googlecreativelab/quickdraw-dataset](https://github.com/googlecreativelab/quickdraw-dataset)
-
-Here is the link to original Google Quick, Draw Game:  [https://quickdraw.withgoogle.com](https://quickdraw.withgoogle.com)
+The original Google Quick, Draw Game:  [https://quickdraw.withgoogle.com](https://quickdraw.withgoogle.com)
 
 Here is the link to the deployment of game as continued work in progress:  Coming soon
 
 
 # Data Understanding:
 
-We focused on developing a game for  There were 47 animals in the dataset out of the 345 categories.
+The original dataset contains 345 categories, but we opted to use animals for our game as they are fun to draw and would appeal to a younger and older audience.  There were 47 animals in the dataset out of the 345 categories, and we ultimately picked 10 animals for our modeling.
 
-Discuss different types of image files....
+Google published the Quick Draw data in four different formats:
 
+1. raw dataset: `*.ndjson`
+2. simplified drawing files: `*.ndjson`
+3. binary files: `*.bin`
+4. numpy bitmaps: `*.npy`
 
+The raw dataset is available as ndjson files separated by category with the following keys:
+
+- key_id: unique identifier across all drawings
+- word: category that player prompted to draw
+- recognized: whether word recognized by game
+- timestamp: when drawing was created
+- countrycode: two letter country code
+- drawing: JSON array representing vector drawing
+
+The simplified drawing files are also in ndjson format, but the vectors were simplified, removed the timing indo, and positioned and scaled to a 256x256 region. The binary format is for efficient comprehension and laoding. The simplified drawings were rendered into a 28x28 grayscale bitmap in numpy (`*.npy`) fromat.
 
 # Modeling:
 
@@ -74,36 +87,52 @@ To Be Continued
 
 	├── README.md               <- the top-level README for reviewers of this project
 	├── _notebooks				<- folder containing all the project notebooks
-	│   ├── cnn.ipynb			<- notebook for displaying augmentations
+	│   ├── cnn.ipynb			<- notebook for CNN model
 	│   ├── EDA.ipynb			<- notebook for dataset understanding and EDA
-	│   ├── mobilenet.ipynb		<- notebook for image folder management
-	│   ├── pytorch.ipynb		<- notebook for predicting on holdout sets
-	│   └── shuffle_csv.ipynb  	<- py file with self-defined functions
-	├── final_notebook.ipynb       <- final notebook for capstone project
-	├── _src                    <- folder of csv files (csv)
-	│   ├── build_model.py		<- notebook for dataset understanding and EDA
-	│   ├── simple_conv_nn.py	<- notebook for image folder management
-	│   ├── pytorch.ipynb		<- notebook for predicting on holdout sets
-	│   └── shuffle_csv.ipynb  	<- py file with self-defined functions
-	├── _data                   <- folder of csv files (csv)
-	├── _data                   <- folder of csv files (csv)
-	├── 
+	│   ├── mobilenet.ipynb		<- notebook for MobileNet model
+	│   ├── pytorch.ipynb		<- notebook for Pytorch model
+	│   └── shuffle_csv.ipynb  	<- notebook for creating shuffle csvs
+	├── final_notebook.ipynb    <- final notebook for overall project
+	├── _src                    <- folder of python files for building model for Flask
+	│   ├── build_model.py		<- python file for building RNN model
+	│   ├── simple_conv_nn.py	<- python file for building CNN model
+	│   └── image_utils.py  	<- python file for working with images
+	├── _data                   <- folder of various data files
+	├── _Flictionary_App        <- folder for Flask files
+	│   ├── _templates			<- notebook for dataset understanding and EDA
+	│	│   ├── index.html		<- landing page for Flask
+	│	│   └──  hook.html		<- post-submission page for Flask
+	│   └── run.py			  	<- python file to start Flask
 	└── Proj_Presentation.pdf	<- pdf of the presentation
+
+
+
+# Contributors:
+
+***Front-End Team:***
+
+- [BMoClay](https://github.com/BMoClay)
+- [Chanson9892](https://github.com/Chanson9892)
+- [darrickpang](https://github.com/darrickpang)
+
+***Back-End Team:***
+
+- [Jkang91](https:///github.com/JKang91)
+- [oklena](https://github.com/oklena)
+- [roadpilot](https//github.com/roadpilot)
 
 
 # Contact Information:
 
-**Steven Yan**
+[![Email Badge](https://img.shields.io/static/v1?label=Email&message=stevenyan@uchicago.edu&color=8b0000&style=for-the-badge&logo=GMail&logoColor=white&logoWidth=30)](mailto:stevenyan@uchicago.edu)
 
-<img src="images/mail_icon.png"> **Email:** [stevenyan@uchicago.edu](mailto:stevenyan@uchicago.edu)
+[![Github Badge](https://img.shields.io/static/v1?label=GitHub&message=@datascisteven&color=9966CC&style=for-the-badge&logo=GitHub&logoWidth=30)](https://www.github.com/datascisteven)
 
-<img src="images/linkedin_icon.png"> **LinkedIn:** [https://www.linkedin.com/in/datascisteven](https://www.linkedin.com/in/datascisteven)
+[![LinkedIn Badge](https://img.shields.io/static/v1?label=LinkedIn&message=@datascisteven&color=0A66C2&style=for-the-badge&logo=LinkedIn&logoWidth=30)](https://www.linkedin.com/in/datascisteven)
 
-<img src="images/github_icon.png"> **Github:** [https://www.github.com/datascisteven](https://www.github.com/datascisteven)
+[![Medium Badge](https://img.shields.io/static/v1?label=Medium&message=@datascisteven&color=003366&style=for-the-badge&logo=Medium&logoWidth=30)](https://datascisteven.medium.com)
 
-<img src="images/medium_icon.png"> **Blog:** [https://datascisteven.medium.com](https://datascisteven.medium.com)
-
-<img src="images/website_icon.png"> **Website:** [https://datascisteven.github.io](https://datascisteven.github.io)
+[![Portfolio Badge](https://img.shields.io/static/v1?label=Website&message=datascisteven.github.io&color=FF6600&style=for-the-badge&logo=GoogleChrome&logoColor=white&logoWidth=30)](https://datascisteven.github.io)
  
 
 
