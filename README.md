@@ -85,25 +85,25 @@ To Be Continued
 
 # Folder Structure:
 
-	├── README.md               <- the top-level README for reviewers of this project
-	├── _notebooks				<- folder containing all the project notebooks
-	│   ├── cnn.ipynb			<- notebook for CNN model
-	│   ├── EDA.ipynb			<- notebook for dataset understanding and EDA
+	├── README.md               	<- the top-level README for reviewers of this project
+	├── _notebooks			<- folder containing all the project notebooks
+	│   ├── cnn.ipynb		<- notebook for CNN model
+	│   ├── EDA.ipynb		<- notebook for dataset understanding and EDA
 	│   ├── mobilenet.ipynb		<- notebook for MobileNet model
 	│   ├── pytorch.ipynb		<- notebook for Pytorch model
 	│   └── shuffle_csv.ipynb  	<- notebook for creating shuffle csvs
-	├── final_notebook.ipynb    <- final notebook for overall project
-	├── _src                    <- folder of python files for building model for Flask
+	├── final_notebook.ipynb    	<- final notebook for overall project
+	├── _src                    	<- folder of python files for building model for Flask
 	│   ├── build_model.py		<- python file for building RNN model
 	│   ├── simple_conv_nn.py	<- python file for building CNN model
 	│   └── image_utils.py  	<- python file for working with images
-	├── _data                   <- folder of various data files
-	├── _Flictionary_App        <- folder for Flask files
-	│   ├── _templates			<- notebook for dataset understanding and EDA
-	│	│   ├── index.html		<- landing page for Flask
-	│	│   └──  hook.html		<- post-submission page for Flask
-	│   └── run.py			  	<- python file to start Flask
-	└── Proj_Presentation.pdf	<- pdf of the presentation
+	├── _data                   	<- folder of various data files
+	├── _Flictionary_App        	<- folder for Flask files
+	│   ├── _templates		<- notebook for dataset understanding and EDA
+	│   │   ├── index.html		<- landing page for Flask app
+	│   │   └──  hook.html		<- post-submission page for Flask app
+	│   └── run.py			<- python file to run Flask app
+	└── Project_Presentation.pdf	<- pdf of the presentation
 
 
 
@@ -111,15 +111,15 @@ To Be Continued
 
 ***Front-End Team:***
 
-- [BMoClay](https://github.com/BMoClay)
-- [Chanson9892](https://github.com/Chanson9892)
-- [darrickpang](https://github.com/darrickpang)
+- **[BMoClay](https://github.com/BMoClay)**
+- **[Chanson9892](https://github.com/Chanson9892)**
+- **[darrickpang](https://github.com/darrickpang)**
 
 ***Back-End Team:***
 
-- [Jkang91](https:///github.com/JKang91)
-- [oklena](https://github.com/oklena)
-- [roadpilot](https//github.com/roadpilot)
+- **[Jkang91](https:///github.com/JKang91)**
+- **[oklena](https://github.com/oklena)**
+- **[roadpilot](https//github.com/roadpilot)**
 
 
 # Contact Information:
