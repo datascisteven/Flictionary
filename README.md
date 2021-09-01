@@ -1,4 +1,6 @@
 # Flictionary
+
+<img src="images/gs.png">
  
 ## Introduction:
 
@@ -65,10 +67,10 @@ The simplified drawing files are also in ndjson format, but the vectors were sim
 
 ## Modeling:
 
-For the backend, there were two considerations for developing the model:
+For the backend, there were two major decisions in developing the model: 
 
-1. Image Format (ndjson, bin, npy)
-2. Model Architecture (RNN, CNN, etc.)
+1. which image format (ndjson, bin, npy) are we using since we would need to learn how to decode the format to input into the neural network
+2. which model Architecture (RNN, CNN, etc.) seems to have the biggest success in accuracy
 
 
 
