@@ -126,3 +126,4 @@ dmypy.json
 .DS_Store
 data/df_merge.csv
 data/test_raw.csv
+/extras/
