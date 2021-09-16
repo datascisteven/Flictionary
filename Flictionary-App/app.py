@@ -1,24 +1,20 @@
 from flask import Flask, render_template, request
-from scipy.misc import imsave, imreaad, imresize
 import numpy as np 
 import tensorflow as tf
 from tensorflow import keras
-rom PIL import Image
+from PIL import Image
 import base64
 import re
 from io import BytesIO
 import cv2
 import time
 import os
+import json
 
-
-# import matplotlib for plotting
 from matplotlib.pyplot import imshow
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-
-# import Plotly
 import plotly
 import chart_studio.plotly as py
 import plotly.graph_objs as go
@@ -26,6 +22,7 @@ import plotly.graph_objs as go
 # import image processing
 import sys
 from image_utils import crop_image, normalize_image, convert_to_rgb, convert_to_np
+from keras.models import load_model
 
 # Dictionary with label codes
 label_dict = {0:'ant', 1:'bat', 2:'bear', 3:'bee', 4:'butterfly', 
@@ -40,9 +37,9 @@ label_dict = {0:'ant', 1:'bat', 2:'bear', 3:'bee', 4:'butterfly',
               45:'whale', 46:'zebra'}
 
 
-def load_model(filepath='../data/flask_model.h5'):
+def loading_model(filepath='model/model_h5.h5'):
     print("Loading model from {} \n".format(filepath))
-    model = tf.keras.models.load_model(filepath)
+    model = load_model(filepath)
     graph = tf.compat.v1.get_default_graph()
     return model, graph
 
@@ -75,7 +72,7 @@ def make_prediction(model, input):
 
 app = Flask(__name__)
 # load model
-model = load_model()
+model, graph = loading_model()
 
 @app.route('/')
 @app.route('/index')
@@ -122,7 +119,7 @@ def pred(dataURL):
             'data': [
                 go.Bar(
                         x = preds.ravel().tolist(),
-                        y = list(label_dict.values()),
+                        y = [label_dict[pred] for pred in preds],
                         orientation = 'h')
             ],
 
@@ -150,7 +147,7 @@ def pred(dataURL):
         dataURL = dataURL # image to display with result
     )
 
-if __name__: '__main__':
+if __name__ == '__main__':
     app.debug=True 
     port=int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
