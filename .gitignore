@@ -127,3 +127,6 @@ dmypy.json
 data/df_merge.csv
 data/test_raw.csv
 /extras/
+/models/
+model/variables/variables.data-00000-of-00001
+model/variables/variables.index
