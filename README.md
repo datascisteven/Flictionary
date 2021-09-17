@@ -8,6 +8,8 @@ A ragtag group of 8 alumni comprising of 2 DS, 5 SE, and 1 UX/UI banded together
 
 This repository represents the continued efforts of this hodgepodge of Flatiron alumni to build a Pictionary-inspired gaming app, which we ultimately named Flictionary, but as the lead of the back-end team, this repo represents more of the backend efforts to develop a neural network for deployment onto Flask.
 
+
+
 ## Background:
 
 Here were some of the guidelines we were given:
@@ -16,6 +18,8 @@ Here were some of the guidelines we were given:
 - Making a game can be a lot of fun, having to think through the logic of everything that happens in your game and anticipate how the user will play your game is a blast.
 - Make sure you are utilizing the skills of your entire team when building this thing is a challenge.
 - Working together with others that think differently than you is an invaluable experience that will pay dividends in the job search and your career in general.
+
+<img src="images/sample2.png">
 
 ## Blog:
 
