@@ -19,7 +19,7 @@ Here were some of the guidelines we were given:
 - Make sure you are utilizing the skills of your entire team when building this thing is a challenge.
 - Working together with others that think differently than you is an invaluable experience that will pay dividends in the job search and your career in general.
 
-<img src="images/sample2.png">
+<center><img src="images/sample2.png" width=400></center>
 
 ## Blog:
 
@@ -28,26 +28,18 @@ Please stay tuned for the blog on Medium describing our brainstorming process, g
 While there were many passionate people working hard over the past two weeks on this project and were enthusiastic to see it go to completion, I recognize that job searching and life demands can take priority, and the project may go to the backburner.
 
 
-## Installation:
 
-
-
-
-## Data Sources:
+## Data Sources and Understanding:
 
 The Quick Draw Dataset is a collection of 50 million drawings across 345 categories, contributed by players of the game Quick, Draw!. The drawings were captured as timestamped vectors, tagged with metadata including what the player was asked to draw and in which country the player was located. You can browse the recognized drawings on [quickdraw.withgoogle.com/data](https://quickdraw.withgoogle.com/data).
 
 Kaggle hosted a Quick, Draw! Doodle Recognition Challenge 3 years ago, and they released another format for the images and we used that dataset for some of the models:  [https://www.kaggle.com/c/quickdraw-doodle-recognition/data](https://www.kaggle.com/c/quickdraw-doodle-recognition/data)
  
-
 Github link for the dataset:  [https://github.com/googlecreativelab/quickdraw-dataset](https://github.com/googlecreativelab/quickdraw-dataset)
 
 The original Google Quick, Draw Game:  [https://quickdraw.withgoogle.com](https://quickdraw.withgoogle.com)
 
-Here is the link to the deployment of game as continued work in progress:  Coming soon
-
-
-## Data Understanding:
+Here is the link to the deployment of game as continued work in progress:  ***Coming soon***
 
 The original dataset contains 345 categories, but we opted to use animals for our game as they are fun to draw and would appeal to a younger and older audience.  There were 47 animals in the dataset out of the 345 categories, and we ultimately picked 10 animals for our modeling.
 
@@ -60,14 +52,17 @@ Google published the Quick Draw data in four different formats:
 
 The raw dataset is available as ndjson files separated by category with the following keys:
 
-- key_id: unique identifier across all drawings
-- word: category that player prompted to draw
-- recognized: whether word recognized by game
-- timestamp: when drawing was created
-- countrycode: two letter country code
-- drawing: JSON array representing vector drawing
+- `key_id`: unique identifier across all drawings
+- `word`: category that player prompted to draw
+- `recognized`: whether word recognized by game
+- `timestamp`: when drawing was created
+- `countrycode`: two letter country code
+- `drawing`: JSON array representing vector drawing
 
 The simplified drawing files are also in ndjson format, but the vectors were simplified, removed the timing indo, and positioned and scaled to a 256x256 region. The binary format is for efficient comprehension and laoding. The simplified drawings were rendered into a 28x28 grayscale bitmap in numpy (`*.npy`) fromat.
+
+<center><img src="images/sample7.png" width=400></center>
+
 
 ## Modeling:
 
@@ -76,34 +71,32 @@ For the backend, there were two major decisions in developing the model:
 1. which image format (ndjson, bin, npy) are we using since we would need to learn how to decode the format to input into the neural network
 2. which model Architecture (RNN, CNN, etc.) seems to have the biggest success in accuracy
 
+We opted to go with the ndjson files for the simplified drawings as they were similar in size.  We also resized them into 80x80 because of memory constraints on Google Colab. Although the particular model that you chose does sometimes dictate the size of the input images.
 
+MobileNet had the most success without changing many hyperparameters
 
 
 ## Results:
 
-To Be Continued...
+We used the MobileNet architecture to train 
 
-
+<center><img src="images/history5.png"></center>
 
 
 
 
 ## Folder Structure:
 
-	├── README.md               	<- the top-level README for reviewers of this project
-	├── _notebooks			<- folder containing all the project notebooks
-	│   ├── cnn.ipynb		<- notebook for CNN model
-	│   ├── EDA.ipynb		<- notebook for dataset understanding and EDA
+	├── README.md               <- the top-level README for reviewers of this project
+	├── _notebooks				<- folder containing all the project notebooks
+	│   ├── index.ipynb			<- notebook for CNN model
+	│   ├── EDA.ipynb			<- notebook for dataset understanding and EDA
 	│   ├── mobilenet.ipynb		<- notebook for MobileNet model
-	│   ├── pytorch.ipynb		<- notebook for Pytorch model
 	│   └── shuffle_csv.ipynb  	<- notebook for creating shuffle csvs
 	├── final_notebook.ipynb    	<- final notebook for overall project
-	├── _src                    	<- folder of python files for building model for Flask
-	│   ├── build_model.py		<- python file for building RNN model
-	│   ├── simple_conv_nn.py	<- python file for building CNN model
-	│   └── image_utils.py  	<- python file for working with images
-	├── _data                   	<- folder of various data files
-	├── _Flictionary_App        	<- folder for Flask files
+	├── _images                   	<- folder of various data files
+	├── _data                   	<- folder of various data files	├── _data                   	<- folder of various data files	├── _data                   	<- folder of various data files	
+	├── _Flictionary-Flask        	<- folder for Flask files
 	│   ├── _templates		<- notebook for dataset understanding and EDA
 	│   │   ├── index.html		<- landing page for Flask app
 	│   │   └──  hook.html		<- post-submission page for Flask app
@@ -127,7 +120,7 @@ To Be Continued...
 - **[roadpilot](https//github.com/roadpilot)**
 
 
-# Contact Information:
+# My Contact Information:
 
 [![Email Badge](https://img.shields.io/static/v1?label=Email&message=stevenyan@uchicago.edu&color=8b0000&style=for-the-badge&logo=GMail&logoColor=white&logoWidth=30)](mailto:stevenyan@uchicago.edu)
 
