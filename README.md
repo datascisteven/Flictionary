@@ -4,7 +4,8 @@
  
 ## Introduction:
 
-A ragtag group of 8 alumni comprising of 2 DS, 5 SE, and 1 UX/UI banded together for the Flatiron School Game Jam.  The hackathon was centered around the theme of Pursuing Mastery and was conducted by SE alum Cody Miller. This was an opportunity for Flatiron alums from the different programs (software engineers, data scientists, designers, and cybersecurity) to synergistically (and sometimes not) build something together through the medium of a game. The game can be anything that the group brainstorms together on the first day, but it is al
+A ragtag group of 8 alumni comprising of 2 DS, 5 SE, and 1 UX/UI banded together for the Flatiron School Game Jam.  The hackathon was centered around the theme of Pursuing Mastery and was conducted by SE alum Cody Miller. This was an opportunity for Flatiron alums from the different programs (software engineers, data scientists, designers, and cybersecurity) to synergistically (and sometimes not) build something together through the medium of a game. The game can be anything that the group brainstorms together on the first day, but it is all about making an enjoyable experience.
+
 This repository represents the continued efforts of this hodgepodge of Flatiron alumni to build a Pictionary-inspired gaming app, which we ultimately named Flictionary, but as the lead of the back-end team, this repo represents more of the backend efforts to develop a neural network for deployment onto Flask.
 
 
@@ -63,7 +64,7 @@ The simplified drawing files are also in ndjson format, but the vectors were sim
 <center><img src="images/sample7.png" width=400></center>
 
 
-## Modeling:
+## Modeling and Results
 
 For the backend, there were two major decisions in developing the model: 
 
