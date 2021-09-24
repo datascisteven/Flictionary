@@ -28,7 +28,6 @@ Please stay tuned for the blog on Medium describing our brainstorming process, g
 While there were many passionate people working hard over the past two weeks on this project and were enthusiastic to see it go to completion, I recognize that job searching and life demands can take priority, and the project may go to the backburner.
 
 
-
 ## Data Sources and Understanding:
 
 The Quick Draw Dataset is a collection of 50 million drawings across 345 categories, contributed by players of the game Quick, Draw!. The drawings were captured as timestamped vectors, tagged with metadata including what the player was asked to draw and in which country the player was located. You can browse the recognized drawings on [quickdraw.withgoogle.com/data](https://quickdraw.withgoogle.com/data).
@@ -64,7 +63,7 @@ The simplified drawing files are also in ndjson format, but the vectors were sim
 <center><img src="images/sample7.png" width=400></center>
 
 
-## Modeling and Results
+## Modeling and Results:
 
 For the backend, there were two major decisions in developing the model: 
 
@@ -73,39 +72,41 @@ For the backend, there were two major decisions in developing the model:
 
 We opted to go with the ndjson files for the simplified drawings as they were similar in size.  We also resized them into 80x80 because of memory constraints on Google Colab. Although the particular model that you chose does sometimes dictate the size of the input images.
 
-MobileNet had the most success without changing many hyperparameters
+We used a training set of 80,000 images with an input size of 96x96, validation set of 10,000 images, and testing set of 10,000 images.  We picked 96x96 because it was the number of pixels that Google Colab Pro could handle in its RAM without crashing given the size of my datasets.
+
+We used ImageDataGenerator for image augmentation on the training dataset, i.e. to rotate, width shift, height shift, zoom, horizontal flip, and vertical flip the training images to prevent overfitting. 
+
+We tried different pretrained models and tried some transfer learning models, but we returned to the MobileNet architecture, achieving around a 73% cross-categorical accuracy and 90% top-3 accuracy on testing set.  
+
+Here are the learning curves from the MobileNet training:
+
+<center><img src="images/history.png"></center>
 
 
-## Results:
+## Deployment
 
-We used the MobileNet architecture to train 
+Please navigate to the following repo for the code to deploy the model in Flask and Heroku.
 
-<center><img src="images/history5.png"></center>
-
-
-
+[Flictionary Flask Repo](https://github.com/datascisteven/Flictionary-Flask/tree/main)
 
 ## Folder Structure:
 
-	├── README.md               <- the top-level README for reviewers of this project
-	├── _notebooks				<- folder containing all the project notebooks
-	│   ├── index.ipynb			<- notebook for CNN model
-	│   ├── EDA.ipynb			<- notebook for dataset understanding and EDA
-	│   ├── mobilenet.ipynb		<- notebook for MobileNet model
-	│   └── shuffle_csv.ipynb  	<- notebook for creating shuffle csvs
-	├── final_notebook.ipynb    	<- final notebook for overall project
-	├── _images                   	<- folder of various data files
-	├── _data                   	<- folder of various data files	├── _data                   	<- folder of various data files	├── _data                   	<- folder of various data files	
-	├── _Flictionary-Flask        	<- folder for Flask files
-	│   ├── _templates		<- notebook for dataset understanding and EDA
-	│   │   ├── index.html		<- landing page for Flask app
-	│   │   └──  hook.html		<- post-submission page for Flask app
-	│   └── run.py			<- python file to run Flask app
+	├── README.md               	<- the top-level README for reviewers of this project
+	├── _notebooks					<- folder containing all the project notebooks
+	│   ├── index.ipynb				<- notebook for CNN model
+	│   ├── eda.ipynb				<- notebook for dataset understanding and EDA
+	│   ├── mobilenet.ipynb			<- notebook for MobileNet model
+	│   └── cnn.ipynb  				<- another notebook for modeling
+	├── _images                 	<- folder of various data files
+	├── _data                  		<- contains my pickles, saved models and logs (Tensorflow), and various csv files	
+	├── _src						<- folder containing all the project notebooks
+	│   ├── image_utils.py			<- notebook for CNN model
+	│   └── utils.py  				<- another notebook for modeling
 	└── Project_Presentation.pdf	<- pdf of the presentation
 
 
 
-# Contributors:
+## Contributors:
 
 ***Front-End Team:***
 

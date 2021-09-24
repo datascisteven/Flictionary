@@ -128,4 +128,6 @@ data/df_merge.csv
 data/test_raw.csv
 /extras/
 /models/
+/results/
 *.png
+/images/
