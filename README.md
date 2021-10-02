@@ -1,7 +1,9 @@
 # Flictionary
 
-<img src="images/gs.png">
+<img src="images/Flictionary-Screenshot.png">
  
+
+
 ## Introduction:
 
 A ragtag group of 8 alumni comprising of 2 DS, 5 SE, and 1 UX/UI banded together for the Flatiron School Game Jam.  The hackathon was centered around the theme of Pursuing Mastery and was conducted by SE alum Cody Miller. This was an opportunity for Flatiron alums from the different programs (software engineers, data scientists, designers, and cybersecurity) to synergistically (and sometimes not) build something together through the medium of a game. The game can be anything that the group brainstorms together on the first day, but it is all about making an enjoyable experience.
@@ -26,6 +28,7 @@ Here were some of the guidelines we were given:
 Please stay tuned for the blog on Medium describing our brainstorming process, group dynamics, recap of our group chats and meetings, what our successes and challenges were, what I learned from the experience, as well as our future steps.
 
 While there were many passionate people working hard over the past two weeks on this project and were enthusiastic to see it go to completion, I recognize that job searching and life demands can take priority, and the project may go to the backburner.
+
 
 
 ## Data Sources and Understanding:
@@ -82,12 +85,12 @@ Here are the learning curves from the MobileNet training:
 
 <center><img src="images/history.png"></center>
 
+## Flask App and Deployment
 
-## Deployment
+The picture above is the current state of the Flask app run on local server, and it is ready to be deployed.  Am investigating different options for deployment:  Heroku and AWS EC2.
 
-Please navigate to the following repo for the code to deploy the model in Flask and Heroku.
+Most of the front-end code, i.e. Javascript, HTML, React, is the work of: https://github.com/Lexie88rus/quick-draw-image-recognition.  As I am somewhat familiar with HTML and CSS, I have slowly made changs to fit the needs of Flictionary.
 
-[Flictionary Flask Repo](https://github.com/datascisteven/Flictionary-Flask/tree/main)
 
 ## Folder Structure:
 
@@ -102,7 +105,7 @@ Please navigate to the following repo for the code to deploy the model in Flask 
 	├── _src						<- folder containing all the project notebooks
 	│   ├── image_utils.py			<- notebook for CNN model
 	│   └── utils.py  				<- another notebook for modeling
-	└── Project_Presentation.pdf	<- pdf of the presentation
+	└── _Flictionary-Flask			<- files for Flask app and deployment_
 
 
 
